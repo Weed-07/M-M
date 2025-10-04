@@ -11,6 +11,7 @@
             <img src="logo.PNG" alt="Logo" class="site-logo">
             <h1>mboga&mbutoentreprise</h1>
             <button id="darkToggle" class="dark-toggle">🌙 Dark Mode</button>
+            <button id="backToTop" class="back-to-top">⬆️</button>
         </div>
         <nav>
             <ul>
@@ -153,10 +154,24 @@
             document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
     });
 </script>
+        <script>
+    const backToTop = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+        backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+    });
+    backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+</script>
 
     </main>
     <footer>
-        <p>&copy; 2025 mboga&mbutoentreprise. All rights reserved.</p>
+    <p>&copy; 2025 Mboga & Mbuto Entreprise. All rights reserved.</p>
+    <div class="social-icons">
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111393.png" alt="Facebook"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+    </div>
     </footer>
 </body>
 </html>
