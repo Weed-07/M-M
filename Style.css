@@ -51,6 +51,60 @@ body.dark .product-card {
     background: #1e1e1e;
 }
 
+    /* Buy Button */
+.buy-btn {
+    margin-top: 8px;
+    padding: 6px 12px;
+    background: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.buy-btn:hover {
+    background: #388e3c;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 400px;
+    text-align: center;
+}
+.modal-content .payment-btn {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background: #2e7d32;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+.modal-content .payment-btn:hover {
+    background: #1b5e20;
+}
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
