@@ -10,6 +10,7 @@
         <div class="logo-title">
             <img src="logo.PNG" alt="Logo" class="site-logo">
             <h1>mboga&mbutoentreprise</h1>
+            <button id="darkToggle" class="dark-toggle">🌙 Dark Mode</button>
         </div>
         <nav>
             <ul>
@@ -144,6 +145,15 @@
             <h2>Contact Us</h2>
             <p>Call us: <strong>+250793905159</strong></p>
         </section>
+        <script>
+    const toggleBtn = document.getElementById("darkToggle");
+    toggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        toggleBtn.textContent = 
+            document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
+    });
+</script>
+
     </main>
     <footer>
         <p>&copy; 2025 mboga&mbutoentreprise. All rights reserved.</p>
