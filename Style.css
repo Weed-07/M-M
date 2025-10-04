@@ -1,3 +1,49 @@
+html {
+    scroll-behavior: smooth;
+}
+.back-to-top {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: #2e7d32;
+    color: white;
+    border: none;
+    padding: 0.7rem 1rem;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    display: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.dark-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    background: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    z-index: 1100;
+}
+
+body.dark {
+    background: #121212;
+    color: #eee;
+}
+
+body.dark header,
+body.dark footer {
+    background: #1b5e20;
+}
+
+body.dark .product-card {
+    background: #1e1e1e;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -124,3 +170,17 @@ footer {
     padding: 10px 0;
     margin-top: 40px;
 }
+.social-icons {
+    margin-top: 1rem;
+}
+
+.social-icons a img {
+    width: 28px;
+    margin: 0 0.5rem;
+    transition: transform 0.3s;
+}
+
+.social-icons a img:hover {
+    transform: scale(1.2);
+}
+
