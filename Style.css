@@ -1,6 +1,20 @@
 html {
     scroll-behavior: smooth;
 }
+.hero {
+    text-align: center;
+    padding: 5rem 2rem;
+    background: url("veg 2.jpg") no-repeat center/cover;
+    color: white;
+}
+body {
+    background: url("veg 2.jpg") no-repeat center/cover;
+    background-attachment: fixed; /* keeps it in place while scrolling */
+    color: #333;
+    line-height: 1.6;
+    
+}
+
 .back-to-top {
     position: fixed;
     bottom: 1.5rem;
