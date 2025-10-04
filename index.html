@@ -26,6 +26,25 @@
         <section class="hero">
             <h2>Welcome to mboga&mbutoentreprise!</h2>
             <p>Your one-stop shop for fresh vegetables and fruits.</p>
+            <div class="product-card">
+    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Asparagus">
+    <span>Asparagus</span>
+    <button class="buy-btn" onclick="openPayment('Asparagus')">Buy</button>
+
+            </div>
+            <!-- Payment Modal -->
+<div id="paymentModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="productTitle">Buy Product</h2>
+        <p>Select a payment method:</p>
+        <div class="payment-options">
+            <a href="https://www.paypal.com/paypalme/YourPayPalID" target="_blank" class="payment-btn">PayPal</a>
+            <a href="tel:+250793905159" class="payment-btn">Mobile Money</a>
+        </div>
+    </div>
+</div>
+
         </section>
        
         <section id="products">
@@ -164,7 +183,30 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
 </script>
+<script>
+    // Payment Modal
+const modal = document.getElementById("paymentModal");
+const modalTitle = document.getElementById("productTitle");
+const closeBtn = document.querySelector(".modal .close");
 
+function openPayment(productName) {
+    modal.style.display = "block";
+    modalTitle.textContent = `Buy ${productName}`;
+}
+
+// Close modal
+closeBtn.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+</script>
     </main>
     <footer>
     <p>&copy; 2025 Mboga & Mbuto Entreprise. All rights reserved.</p>
