@@ -1,247 +1,428 @@
-html {
-    scroll-behavior: smooth;
-body {
-    background: url("veg 2.jpg") no-repeat center/cover;
-    background-attachment: fixed; /* keeps it in place while scrolling */
-    color: #333;
-    line-height: 1.6;
-    
+/* ============================================================
+   Style.css — Mboga & Mbuto Entreprise
+   Full site stylesheet: layout, components, dark mode, modal,
+   responsive grid, accessibility.
+   ============================================================ */
+
+/* -------------------------
+   Theme variables
+   ------------------------- */
+:root{
+  --green-700: #2e7d32;
+  --green-600: #388e3c;
+  --green-500: #4caf50;
+  --green-400: #66bb6a;
+  --accent-blue: #1976d2;
+  --card-bg: #f8faf8;
+  --muted: #6b7a6b;
+  --text: #2d3a2e;
+  --on-dark: #eaeaea;
+  --page-max-width: 1200px;
+  --radius: 10px;
+  --shadow-1: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-2: 0 8px 30px rgba(0,0,0,0.12);
+  --transition-fast: 150ms ease;
+  --transition-mid: 220ms ease;
+  --base-font: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --bg-image: url("veg-2.jpg"); /* rename your image to veg-2.jpg or change this path */
 }
 
-.back-to-top {
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    background: #2e7d32;
-    color: white;
-    border: none;
-    padding: 0.7rem 1rem;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    display: none;
-    cursor: pointer;
-    z-index: 1000;
+/* -------------------------
+   Global / Reset
+   ------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body{
+  margin: 0;
+  font-family: var(--base-font);
+  color: var(--text);
+  line-height: 1.5;
+  background: var(--bg-image) no-repeat center/cover fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
-.dark-toggle {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.5rem 1rem;
-    background: #2e7d32;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    z-index: 1100;
+/* Improve focus visibility */
+:focus {
+  outline: 3px solid rgba(94, 165, 70, 0.28);
+  outline-offset: 2px;
 }
 
-body.dark {
-    background: #121212;
-    color: #eee;
-}
-
-body.dark header,
-body.dark footer {
-    background: #1b5e20;
-}
-
-body.dark .product-card {
-    background: #1e1e1e;
-}
-
-    /* Buy Button */
-.buy-btn {
-    margin-top: 8px;
-    padding: 6px 12px;
-    background: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.buy-btn:hover {
-    background: #388e3c;
-}
-
-/* Modal Styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.6);
-}
-.modal-content {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 12px;
-    max-width: 400px;
-    text-align: center;
-}
-.modal-content .payment-btn {
-    display: block;
-    margin: 10px auto;
-    padding: 10px 20px;
-    background: #2e7d32;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-}
-.modal-content .payment-btn:hover {
-    background: #1b5e20;
-}
-.close {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 28px;
-    cursor: pointer;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f3f6f4;
-    color: #2d3a2e;
-}
+/* -------------------------
+   Header
+   ------------------------- */
 header {
-    background: #4caf50;
-    color: white;
-    padding: 20px 0 10px 0;
-    text-align: center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0));
+  padding: 14px 18px;
+  position: sticky;
+  top: 0;
+  z-index: 1200;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
 }
+
+/* container inside header */
 .logo-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 6px 8px;
+}
+
+/* brand block (logo + title) */
+.logo-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 .site-logo {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: white;
-    padding: 4px;
-    object-fit: contain;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fff;
+  padding: 6px;
+  object-fit: contain;
+  display: block;
+  box-shadow: var(--shadow-1);
 }
+
+/* Title styling */
 header h1 {
-    margin: 0;
-    font-size: 2.5em;
-    font-family: 'Trebuchet MS', sans-serif;
+  margin: 0;
+  font-size: 1.25rem;
+  letter-spacing: 0.3px;
+  font-weight: 700;
+}
+
+/* nav */
+nav {
+  width: 100%;
+  margin-top: 8px;
 }
 nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 0 0;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
+  list-style: none;
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  padding: 0;
+  margin: 6px 0 0;
 }
 nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.1em;
+  color: var(--green-500);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: background var(--transition-fast), color var(--transition-fast);
 }
-nav a:hover {
-    text-decoration: underline;
+nav a:hover,
+nav a:focus {
+  background: rgba(76, 175, 80, 0.08);
+  color: var(--green-700);
 }
-.hero {
-    background: #e8f5e9;
-    padding: 40px 0;
-    text-align: center;
+
+/* utility controls placed to top-right via fixed positioning for reliability */
+.dark-toggle,
+.back-to-top {
+  position: fixed;
+  right: 1rem;
+  z-index: 1300;
+  border: none;
+  background: var(--green-500);
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: var(--shadow-1);
+  transition: transform var(--transition-fast), background var(--transition-fast);
+  font-weight: 600;
+  font-size: 0.9rem;
 }
-.hero h2 {
-    margin: 0 0 10px 0;
-    font-size: 2em;
+.dark-toggle { top: 0.9rem; right: 1rem; }
+.back-to-top {
+  bottom: 1.25rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: none; /* toggled by script */
 }
-.about-section,
-.contact-section {
-    background: #e0f2f1;
-    padding: 30px 0;
-    text-align: center;
+
+/* icon-only buttons accessibility */
+.dark-toggle[aria-pressed="true"]{ background: var(--green-600); }
+
+/* -------------------------
+   Main / layout containers
+   ------------------------- */
+main{
+  max-width: var(--page-max-width);
+  margin: 22px auto;
+  padding: 0 16px;
 }
-#products {
-    margin: 40px 0;
-    padding: 0 20px;
+
+/* Hero */
+.hero{
+  background: rgba(255,255,255,0.9);
+  padding: 28px;
+  border-radius: calc(var(--radius) + 2px);
+  box-shadow: var(--shadow-1);
+  text-align: center;
+  margin-bottom: 20px;
 }
-#products h2 {
-    text-align: center;
-    margin-bottom: 20px;
+.hero h2{
+  margin: 0 0 6px;
+  font-size: 1.6rem;
+  color: var(--green-700);
 }
-.category {
-    background: white;
-    margin: 20px auto;
-    max-width: 1200px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    padding: 20px;
+.hero p{ margin: 0; color: var(--muted); }
+
+/* -------------------------
+   Products / gallery
+   ------------------------- */
+#products h2{ text-align: center; margin: 12px 0 20px; color: var(--green-700); }
+
+.category{
+  background: rgba(255,255,255,0.96);
+  margin: 18px auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+  padding: 16px;
 }
-.category h3 {
-    color: #388e3c;
-    margin-bottom: 10px;
-    text-align: left;
+.category h3{
+  margin: 0 0 10px;
+  color: var(--green-600);
 }
-.product-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-    justify-content: flex-start;
+
+/* product gallery: responsive grid using flex wrap */
+.product-gallery{
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: flex-start;
 }
-.product-card {
-    background: #f8faf8;
-    border-radius: 10px;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
-    padding: 10px;
-    width: 160px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 12px;
-    transition: transform 0.2s;
+
+/* product card */
+.product-card{
+  background: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  padding: 12px;
+  width: 160px;
+  flex: 0 1 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
-.product-card:hover {
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 4px 12px rgba(60,80,40,0.13);
+.product-card:hover,
+.product-card:focus-within{
+  transform: translateY(-6px);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.12);
 }
-.product-card img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
+.product-card img{
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  display: block;
+}
+.product-card span{
+  font-size: 1rem;
+  color: #274329;
+  margin-bottom: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Buy button (kept here so overall CSS is complete) */
+.buy-btn {
+    margin-top: 6px;
+    padding: 8px 12px;
+    background: var(--green-500);
+    color: #fff;
+    border: none;
     border-radius: 8px;
-    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background var(--transition-fast), transform var(--transition-fast);
 }
-.product-card span {
-    font-size: 1.1em;
-    font-weight: 500;
-    color: #325b3a;
-    text-align: center;
-}
-footer {
-    background: #388e3c;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    margin-top: 40px;
-}
-.social-icons {
-    margin-top: 1rem;
+.buy-btn:hover, .buy-btn:focus {
+    background: var(--green-600);
+    transform: translateY(-3px);
 }
 
-.social-icons a img {
-    width: 28px;
-    margin: 0 0.5rem;
-    transition: transform 0.3s;
+/* -------------------------
+   About & Contact Sections
+   ------------------------- */
+.about-section,
+.contact-section{
+  background: rgba(255,255,255,0.95);
+  padding: 20px;
+  border-radius: var(--radius);
+  margin: 18px 0;
+  box-shadow: var(--shadow-1);
+  text-align: center;
+}
+.about-section p,
+.contact-section p{ color: var(--muted); margin: 8px 0 0; }
+
+/* -------------------------
+   Modal (payment) styles
+   ------------------------- */
+.modal {
+  display: none; /* shown by JS */
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+.modal[aria-hidden="false"]{ display: flex; }
+
+.modal .modal-content{
+  background: #fff;
+  max-width: 460px;
+  width: 100%;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: var(--shadow-2);
+  position: relative;
+}
+.modal .close{
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #333;
+}
+#productTitle{ margin: 4px 0 6px; color: var(--green-700); }
+#productInfo{ margin: 0 0 12px; color: var(--muted); }
+
+/* payment options buttons inside modal */
+.payment-options{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.payment-btn{
+  display: inline-block;
+  min-width: 140px;
+  text-align: center;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  background: var(--accent-blue);
+  transition: transform var(--transition-fast);
+}
+.payment-btn:hover, .payment-btn:focus{ transform: translateY(-3px); opacity: 0.95; }
+
+/* note in modal */
+.modal-note{
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
-.social-icons a img:hover {
-    transform: scale(1.2);
+/* -------------------------
+   Footer
+   ------------------------- */
+footer{
+  background: linear-gradient(180deg, var(--green-500), var(--green-600));
+  color: white;
+  text-align: center;
+  padding: 14px 8px;
+  margin-top: 28px;
+}
+footer p{ margin: 0; font-size: 0.95rem; }
+.social-icons{ margin-top: 10px; }
+.social-icons a img{
+  width: 28px;
+  vertical-align: middle;
+  margin: 0 6px;
+  transition: transform var(--transition-fast);
+}
+.social-icons a img:hover{ transform: scale(1.15); }
+
+/* -------------------------
+   Dark mode overrides
+   ------------------------- */
+body.dark{
+  background: #0b0b0b;
+  color: var(--on-dark);
+}
+body.dark .hero,
+body.dark .category,
+body.dark .about-section,
+body.dark .contact-section{
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  color: var(--on-dark);
+}
+body.dark header{ background: rgba(0,0,0,0.35); }
+body.dark footer{ background: linear-gradient(180deg, #135723, #0e4720); }
+body.dark .product-card{ background: #121212; color: var(--on-dark); box-shadow: 0 2px 10px rgba(0,0,0,0.6); }
+body.dark .product-card span{ color: #dfeadb; }
+body.dark .buy-btn{ background: var(--green-400); color: #062006; }
+
+/* -------------------------
+   Responsive breakpoints (mobile-first)
+   ------------------------- */
+
+/* Small devices: stack nav vertically and make product cards adapt */
+@media (max-width: 900px) {
+  nav ul { gap: 14px; flex-wrap: wrap; justify-content: center; }
+  .logo-title { flex-direction: column; align-items: center; gap: 12px; }
+  .product-card { flex: 1 1 140px; width: 46%; max-width: 46%; }
+  .hero { padding: 24px; }
 }
 
+/* Phones */
+@media (max-width: 600px) {
+  html { font-size: 15px; }
+  .product-card { width: 100%; flex-basis: 100%; }
+  .product-gallery { justify-content: center; }
+  .logo-title { padding: 8px; }
+  .site-logo { width: 56px; height: 56px; }
+  nav ul { gap: 10px; font-size: 0.95rem; }
+  .dark-toggle { top: .6rem; right: .7rem; padding: 6px 8px; font-size: .85rem; }
+  .back-to-top { right: .7rem; bottom: 1rem; width: 40px; height: 40px; }
+}
+
+/* Very small */
+@media (max-width: 380px){
+  html { font-size: 14px; }
+  .product-card img{ width: 100px; height: 100px; }
+  .site-logo{ width: 48px; height: 48px; }
+}
+
+/* -------------------------
+   Utility helpers
+   ------------------------- */
+.container {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.text-center { text-align: center; }
+
+/* small print / muted */
+.muted { color: var(--muted); font-size: .95rem; }
+
+/* -------------------------
+   End of stylesheet
+   ------------------------- */
