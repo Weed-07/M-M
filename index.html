@@ -212,13 +212,14 @@
                 <h2 id="productTitle">Buy Product</h2>
                 <p id="productInfo">Select a payment method to complete your purchase.</p>
 
-                <div class="payment-options">
-                    <!-- Replace the PayPal link with your own PayPal.Me or checkout link -->
-                    <a id="paypalLink" href="https://www.paypal.com/paypalme/YourPayPalID" target="_blank" rel="noopener" class="payment-btn">Pay with PayPal</a>
+               <div class="payment-options">
+    <a id="paypalLink" href="https://www.paypal.com/paypalme/YourPayPalID" target="_blank" rel="noopener" class="payment-btn">Pay with PayPal</a>
+    
+    <a id="momoLink" href="tel:+250793905159" class="payment-btn">Mobile Money / Call</a>
 
-                    <!-- Mobile Money: tel: link (opens phone dialer) -->
-                    <a id="momoLink" href="tel:+250793905159" class="payment-btn">Mobile Money / Call</a>
-                </div>
+    <a id="whatsappLink" href="#" target="_blank" rel="noopener" class="payment-btn">Pay via WhatsApp</a>
+</div>
+
 
                 <p class="modal-note">After paying, please send your payment confirmation via WhatsApp or call <strong>+250 793 905 159</strong>.</p>
             </div>
@@ -259,6 +260,24 @@
 
         // Payment modal logic
         (function () {
+const whatsappLink = document.getElementById("whatsappLink");
+
+document.querySelectorAll(".buy-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const productName = btn.dataset.product || "Product";
+
+        modalTitle.textContent = `Buy ${productName}`;
+        productInfo.textContent = `You are about to purchase: ${productName}. Choose a payment method below.`;
+
+        // WhatsApp message
+        const message = encodeURIComponent(`Hello, I want to buy ${productName} with Mobile Money`);
+        whatsappLink.href = `https://wa.me/250793905159?text=${message}`;
+
+        modal.style.display = "flex";
+        modal.setAttribute("aria-hidden", "false");
+    });
+});
+
             const modal = document.getElementById("paymentModal");
             const modalTitle = document.getElementById("productTitle");
             const productInfo = document.getElementById("productInfo");
@@ -273,6 +292,8 @@
                     // Optionally you could update paypalLink with product info (if using a backend or query params)
                     modal.style.display = "flex";
                     modal.setAttribute("aria-hidden", "false");
+
+                    
                 });
             });
 
