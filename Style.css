@@ -129,10 +129,13 @@ nav a:focus {
   color: var(--green-700);
 }
 
-/* utility controls placed to top-right via fixed positioning for reliability */
-.dark-toggle,
-.back-to-top {
+/* -------------------------
+   Utility controls
+   ------------------------- */
+/* Dark mode toggle (top-right) */
+.dark-toggle {
   position: fixed;
+  top: 0.9rem;
   right: 1rem;
   z-index: 1300;
   border: none;
@@ -146,14 +149,46 @@ nav a:focus {
   font-weight: 600;
   font-size: 0.9rem;
 }
-.dark-toggle { top: 0.9rem; right: 1rem; }
+
+/* Back-to-top button (fixed bottom-right; moves up if footer is visible) */
 .back-to-top {
-  bottom: 1.25rem;
-  right: 1rem;
-  width: 44px;
-  height: 44px;
+  position: fixed;
+  right: 24px;               /* distance from right edge */
+  bottom: 24px;              /* default distance from bottom edge */
+  width: 48px;
+  height: 48px;
+  display: none;             /* will be toggled by JS */
+  align-items: center;
+  justify-content: center;
+  background: var(--green-700);
+  color: #fff;
+  border: none;
   border-radius: 50%;
-  display: none; /* toggled by script */
+  font-size: 1.15rem;
+  cursor: pointer;
+  z-index: 1400;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  transition: transform 160ms ease, bottom 200ms ease, opacity 160ms ease;
+  opacity: 0.98;
+}
+
+/* small hover / focus states */
+.back-to-top:hover,
+.back-to-top:focus {
+  transform: translateY(-4px);
+  outline: none;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.28);
+}
+
+/* slightly smaller on very small screens */
+@media (max-width: 420px) {
+  .back-to-top {
+    right: 14px;
+    bottom: 16px;
+    width: 42px;
+    height: 42px;
+    font-size: 1rem;
+  }
 }
 
 /* icon-only buttons accessibility */
@@ -312,24 +347,33 @@ main{
 #productInfo{ margin: 0 0 12px; color: var(--muted); }
 
 /* payment options buttons inside modal */
-.payment-options{
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+.payment-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
 }
-.payment-btn{
-  display: inline-block;
-  min-width: 140px;
-  text-align: center;
-  padding: 10px 12px;
-  border-radius: 8px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 700;
-  background: var(--accent-blue);
-  transition: transform var(--transition-fast);
+
+.payment-btn {
+    flex: 1 1 200px;
+    padding: 12px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    background-color: #0070ba; /* default blue */
+    transition: background-color 0.3s ease;
 }
-.payment-btn:hover, .payment-btn:focus{ transform: translateY(-3px); opacity: 0.95; }
+
+.payment-btn:nth-child(1) { background-color: #0070ba; } /* PayPal */
+.payment-btn:nth-child(2) { background-color: #06bbdb; } /* Mobile Money */
+.payment-btn:nth-child(3) { background-color: #25D366; } /* WhatsApp */
+
+.payment-btn:hover {
+    opacity: 0.9;
+}
 
 /* note in modal */
 .modal-note{
