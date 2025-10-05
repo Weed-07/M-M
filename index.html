@@ -2,17 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>mboga&mbutoentreprise</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mboga & Mbuto Entreprise</title>
     <link rel="stylesheet" href="Style.css">
 </head>
 <body>
     <header>
         <div class="logo-title">
             <img src="logo.PNG" alt="Logo" class="site-logo">
-            <h1>mboga&mbutoentreprise</h1>
+            <h1>Mboga &amp; Mbuto Entreprise</h1>
             <button id="darkToggle" class="dark-toggle">🌙 Dark Mode</button>
-            <button id="backToTop" class="back-to-top">⬆️</button>
+            <button id="backToTop" class="back-to-top" title="Back to top">⬆️</button>
         </div>
+
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
@@ -22,199 +24,278 @@
             </ul>
         </nav>
     </header>
+
     <main>
         <section class="hero">
-            <h2>Welcome to mboga&mbutoentreprise!</h2>
+            <h2>Welcome to Mboga &amp; Mbuto Entreprise!</h2>
             <p>Your one-stop shop for fresh vegetables and fruits.</p>
-            <div class="product-card">
-    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Asparagus">
-    <span>Asparagus</span>
-    <button class="buy-btn" onclick="openPayment('Asparagus')">Buy</button>
-
-            </div>
-            <!-- Payment Modal -->
-<div id="paymentModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2 id="productTitle">Buy Product</h2>
-        <p>Select a payment method:</p>
-        <div class="payment-options">
-            <a href="https://www.paypal.com/paypalme/YourPayPalID" target="_blank" class="payment-btn">PayPal</a>
-            <a href="tel:+250793905159" class="payment-btn">Mobile Money</a>
-        </div>
-    </div>
-</div>
-
         </section>
-       
+
+        <!-- Products -->
         <section id="products">
             <h2>Our Products</h2>
+
             <div class="category">
                 <h3>Vegetables</h3>
                 <div class="product-gallery">
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Asparagus">
                         <span>Asparagus</span>
+                        <button class="buy-btn" data-product="Asparagus">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80" alt="Broccoli">
                         <span>Broccoli</span>
+                        <button class="buy-btn" data-product="Broccoli">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1582515073490-dc6f7ba5d1b4?auto=format&fit=crop&w=400&q=80" alt="Cabbage">
                         <span>Cabbage</span>
+                        <button class="buy-btn" data-product="Cabbage">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Lettuce">
                         <span>Lettuce</span>
+                        <button class="buy-btn" data-product="Lettuce">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=400&q=80" alt="Onions">
                         <span>Onions</span>
+                        <button class="buy-btn" data-product="Onions">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?auto=format&fit=crop&w=400&q=80" alt="Carrots">
                         <span>Carrots</span>
+                        <button class="buy-btn" data-product="Carrots">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1506089676908-3592f7389d4d?auto=format&fit=crop&w=400&q=80" alt="Cauliflower">
                         <span>Cauliflower</span>
+                        <button class="buy-btn" data-product="Cauliflower">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=400&q=80" alt="Potato">
                         <span>Potato</span>
+                        <button class="buy-btn" data-product="Potato">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=400&q=80" alt="Garlic">
                         <span>Garlic</span>
+                        <button class="buy-btn" data-product="Garlic">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80" alt="Green beans">
                         <span>Green beans</span>
+                        <button class="buy-btn" data-product="Green beans">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=400&q=80" alt="Peas">
                         <span>Peas</span>
+                        <button class="buy-btn" data-product="Peas">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1509356843158-ada4d0430c94?auto=format&fit=crop&w=400&q=80" alt="Bell pepper">
                         <span>Bell pepper</span>
+                        <button class="buy-btn" data-product="Bell pepper">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a2737?auto=format&fit=crop&w=400&q=80" alt="Spinach">
                         <span>Spinach</span>
+                        <button class="buy-btn" data-product="Spinach">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1439122955806-6c6a0def994b?auto=format&fit=crop&w=400&q=80" alt="Sweet potato">
                         <span>Sweet potato</span>
+                        <button class="buy-btn" data-product="Sweet potato">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1464454709131-ffd692591ee5?auto=format&fit=crop&w=400&q=80" alt="Tomatoes">
                         <span>Tomatoes</span>
+                        <button class="buy-btn" data-product="Tomatoes">Buy</button>
                     </div>
                 </div>
             </div>
+
             <div class="category">
                 <h3>Fruits</h3>
                 <div class="product-gallery">
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1447175008436-054170c2e979?auto=format&fit=crop&w=400&q=80" alt="Apple">
                         <span>Apple</span>
+                        <button class="buy-btn" data-product="Apple">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80" alt="Avocados">
                         <span>Avocados</span>
+                        <button class="buy-btn" data-product="Avocados">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Beetroot">
                         <span>Beetroot</span>
+                        <button class="buy-btn" data-product="Beetroot">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1439122955806-6c6a0def994b?auto=format&fit=crop&w=400&q=80" alt="Cantaloupe">
                         <span>Cantaloupe</span>
+                        <button class="buy-btn" data-product="Cantaloupe">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=400&q=80" alt="Corn">
                         <span>Corn</span>
+                        <button class="buy-btn" data-product="Corn">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1444305281628-7e744084f5a7?auto=format&fit=crop&w=400&q=80" alt="Fresh grapes">
                         <span>Fresh grapes</span>
+                        <button class="buy-btn" data-product="Fresh grapes">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80" alt="Mangoes">
                         <span>Mangoes</span>
+                        <button class="buy-btn" data-product="Mangoes">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=400&q=80" alt="Mushrooms">
                         <span>Mushrooms</span>
+                        <button class="buy-btn" data-product="Mushrooms">Buy</button>
                     </div>
+
                     <div class="product-card">
                         <img src="https://images.unsplash.com/photo-1509356843158-ada4d0430c94?auto=format&fit=crop&w=400&q=80" alt="Oranges">
                         <span>Oranges</span>
+                        <button class="buy-btn" data-product="Oranges">Buy</button>
                     </div>
                 </div>
-                 <section id="about" class="about-section">
-            <h2>About Us</h2>
-            <p>
-                At MBOGA&MBUTOENTREPRISE, we bring fresh, high-quality fruits and vegetables straight from trusted local farms to your table. Our mission is to make healthy eating easy, delicious, and accessible for everyone. Fresh, local, and full of flavor—that’s our promise to you.
-            </p>
-        </section>
             </div>
         </section>
+
+        <!-- About -->
+        <section id="about" class="about-section">
+            <h2>About Us</h2>
+            <p>
+                At Mboga &amp; Mbuto Entreprise, we bring fresh, high-quality fruits and vegetables straight from trusted local farms to your table.
+                Our mission is to make healthy eating easy, delicious, and accessible for everyone. Fresh, local, and full of flavor—that’s our promise to you.
+            </p>
+        </section>
+
+        <!-- Contact -->
         <section id="contact" class="contact-section">
             <h2>Contact Us</h2>
-            <p>Call us: <strong>+250793905159</strong></p>
+            <p>Call us: <strong>+250 793 905 159</strong></p>
         </section>
-        <script>
-    const toggleBtn = document.getElementById("darkToggle");
-    toggleBtn.addEventListener("click", () => {
-        document.body.classList.toggle("dark");
-        toggleBtn.textContent = 
-            document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
-    });
-</script>
-        <script>
-    const backToTop = document.getElementById("backToTop");
-    window.addEventListener("scroll", () => {
-        backToTop.style.display = window.scrollY > 300 ? "block" : "none";
-    });
-    backToTop.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-</script>
-<script>
-    // Payment Modal
-const modal = document.getElementById("paymentModal");
-const modalTitle = document.getElementById("productTitle");
-const closeBtn = document.querySelector(".modal .close");
 
-function openPayment(productName) {
-    modal.style.display = "block";
-    modalTitle.textContent = `Buy ${productName}`;
-}
+        <!-- Payment Modal (single shared modal) -->
+        <div id="paymentModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+            <div class="modal-content" role="document">
+                <span class="close" title="Close">&times;</span>
+                <h2 id="productTitle">Buy Product</h2>
+                <p id="productInfo">Select a payment method to complete your purchase.</p>
 
-// Close modal
-closeBtn.onclick = function() {
-    modal.style.display = "none";
-}
+                <div class="payment-options">
+                    <!-- Replace the PayPal link with your own PayPal.Me or checkout link -->
+                    <a id="paypalLink" href="https://www.paypal.com/paypalme/YourPayPalID" target="_blank" rel="noopener" class="payment-btn">Pay with PayPal</a>
 
-// Close modal when clicking outside
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
+                    <!-- Mobile Money: tel: link (opens phone dialer) -->
+                    <a id="momoLink" href="tel:+250793905159" class="payment-btn">Mobile Money / Call</a>
+                </div>
 
-</script>
+                <p class="modal-note">After paying, please send your payment confirmation via WhatsApp or call <strong>+250 793 905 159</strong>.</p>
+            </div>
+        </div>
+
     </main>
+
     <footer>
-    <p>&copy; 2025 Mboga & Mbuto Entreprise. All rights reserved.</p>
-    <div class="social-icons">
-        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111393.png" alt="Facebook"></a>
-        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"></a>
-        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
-    </div>
+        <p>&copy; 2025 Mboga &amp; Mbuto Entreprise. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111393.png" alt="Facebook"></a>
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"></a>
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+        </div>
     </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Dark mode toggle
+        (function () {
+            const toggleBtn = document.getElementById("darkToggle");
+            toggleBtn.addEventListener("click", () => {
+                document.body.classList.toggle("dark");
+                toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
+            });
+        })();
+
+        // Back to top button
+        (function () {
+            const backToTop = document.getElementById("backToTop");
+            window.addEventListener("scroll", () => {
+                backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+            });
+            backToTop.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        })();
+
+        // Payment modal logic
+        (function () {
+            const modal = document.getElementById("paymentModal");
+            const modalTitle = document.getElementById("productTitle");
+            const productInfo = document.getElementById("productInfo");
+            const closeBtn = modal.querySelector(".close");
+            const paypalLink = document.getElementById("paypalLink");
+            // Attach click listeners to all buy buttons
+            document.querySelectorAll(".buy-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const productName = btn.dataset.product || "Product";
+                    modalTitle.textContent = `Buy ${productName}`;
+                    productInfo.textContent = `You are about to purchase: ${productName}. Choose a payment method below.`;
+                    // Optionally you could update paypalLink with product info (if using a backend or query params)
+                    modal.style.display = "flex";
+                    modal.setAttribute("aria-hidden", "false");
+                });
+            });
+
+            // Close handlers
+            closeBtn.addEventListener("click", () => {
+                modal.style.display = "none";
+                modal.setAttribute("aria-hidden", "true");
+            });
+            window.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                    modal.setAttribute("aria-hidden", "true");
+                }
+            });
+
+            // Close with Esc
+            window.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") {
+                    modal.style.display = "none";
+                    modal.setAttribute("aria-hidden", "true");
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
