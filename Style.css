@@ -57,7 +57,7 @@ body{
    Header
    ------------------------- */
 header {
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0));
+  background: linear-gradient(180deg, rgba(14, 200, 233, 0.06), rgba(255,255,255,0));
   padding: 14px 18px;
   position: sticky;
   top: 0;
@@ -154,7 +154,7 @@ nav a:focus {
 .back-to-top {
   position: fixed;
   right: 24px;               /* distance from right edge */
-  bottom: 24px;              /* default distance from bottom edge */
+  bottom: -350%;              /* default distance from bottom edge */
   width: 48px;
   height: 48px;
   display: none;             /* will be toggled by JS */
