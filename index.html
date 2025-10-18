@@ -1,3 +1,4 @@
+html code are here update it :
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +44,7 @@
                         <button class="buy-btn" data-product="Asparagus">Buy</button>
                     </div>
                     <div class="product-card">
-                        <img src="products/brocoli.jpg" alt="Broccoli">
+                        <img src="products/brocoli.jpg" alt="brocoli">
                         <span>Broccoli</span>
                         <button class="buy-btn" data-product="Broccoli">Buy</button>
                     </div>
@@ -52,7 +53,7 @@
                         <span>Cabbage</span>
                         <button class="buy-btn" data-product="Cabbage">Buy</button>
                     </div>
-                    <div class="product-card">
+                     <div class="product-card">
                         <img src="products/Lettuce.jpg" alt="Lettuce">
                         <span>Lettuce</span>
                         <button class="buy-btn" data-product="Lettuce">Buy</button>
@@ -60,7 +61,7 @@
                     <div class="product-card">
                         <img src="products/red-onion.jpg" alt="Red Onions">
                         <span>Red Onions</span>
-                        <button class="buy-btn" data-product="Red Onions">Buy</button>
+                        <button class="buy-btn" data-product="Onions">Buy</button>
                     </div>
                     <div class="product-card">
                         <img src="products/carrot.jpg" alt="Carrots">
@@ -73,8 +74,8 @@
                         <button class="buy-btn" data-product="Cauliflower">Buy</button>
                     </div>
                     <div class="product-card">
-                        <img src="products/tomatoes.jpg" alt="Tomatoes">
-                        <span>Tomatoes</span>
+                        <img src="products/tomatoes.jpg" alt="Tomato">
+                        <span>Tomato</span>
                         <button class="buy-btn" data-product="Tomatoes">Buy</button>
                     </div>
                     <div class="product-card">
@@ -186,3 +187,111 @@
                 </div>
             </div>
         </section>
+
+        <!-- About -->
+        <section id="about" class="about-section">
+            <h2>About Us</h2>
+            <p>
+                At Mboga &amp; Mbuto Entreprise, we bring fresh, high-quality fruits and vegetables straight from trusted local farms to your table.
+                Our mission is to make healthy eating easy, delicious, and accessible for everyone. Fresh, local, and full of flavor—that’s our promise to you.
+            </p>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="contact-section">
+            <h2>Contact Us</h2>
+            <p>Call us: <strong>+250 793 905 159</strong></p>
+            <p>E-mail us: <strong>thierryiradukunda500@gmail.com</strong></p>
+        </section>
+
+        <!-- Payment Modal -->
+        <div id="paymentModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+            <div class="modal-content" role="document">
+                <span class="close" title="Close">&times;</span>
+                <h2 id="productTitle">Buy Product</h2>
+                <p id="productInfo">Select a payment method to complete your purchase.</p>
+
+                <div class="payment-options">
+                    <a id="paypalLink" href="https://www.paypal.com/paypalme/YourPayPalID" target="_blank" rel="noopener" class="payment-btn">Pay with PayPal</a>
+                    <a id="momoLink" href="tel:+250793905159" class="payment-btn">Mobile Money / Call</a>
+                    <a id="whatsappLink" href="#" target="_blank" rel="noopener" class="payment-btn">Pay via WhatsApp</a>
+                </div>
+
+                <p class="modal-note">After paying, please send your payment confirmation via WhatsApp or call <strong>+250 793 905 159</strong>.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mboga &amp; Mbuto Entreprise. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111393.png" alt="Facebook"></a>
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"></a>
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+        </div>
+    </footer>
+
+    <!-- Script -->
+    <script>
+        // Dark mode
+        (function () {
+            const toggleBtn = document.getElementById("darkToggle");
+            toggleBtn.addEventListener("click", () => {
+                document.body.classList.toggle("dark");
+                toggleBtn.textContent = document.body.classList.contains("dark")
+                    ? "☀️ Light Mode" : "🌙 Dark Mode";
+            });
+        })();
+
+        // Back to top
+        (function () {
+            const backToTop = document.getElementById("backToTop");
+            window.addEventListener("scroll", () => {
+                backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+            });
+            backToTop.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        })();
+
+        // Payment modal
+        (function () {
+            const modal = document.getElementById("paymentModal");
+            const modalTitle = document.getElementById("productTitle");
+            const productInfo = document.getElementById("productInfo");
+            const closeBtn = modal.querySelector(".close");
+            const whatsappLink = document.getElementById("whatsappLink");
+
+            document.querySelectorAll(".buy-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const productName = btn.dataset.product || "Product";
+                    modalTitle.textContent = `Buy ${productName}`;
+                    productInfo.textContent = `You are about to purchase: ${productName}. Choose a payment method below.`;
+                    whatsappLink.href = `https://wa.me/250793905159?text=${encodeURIComponent("Hello, I want to buy " + productName + " with Mobile Money")}`;
+                    modal.style.display = "flex";
+                    modal.setAttribute("aria-hidden", "false");
+                });
+            });
+
+            closeBtn.addEventListener("click", () => {
+                modal.style.display = "none";
+                modal.setAttribute("aria-hidden", "true");
+            });
+
+            window.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                    modal.setAttribute("aria-hidden", "true");
+                }
+            });
+
+            window.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") {
+                    modal.style.display = "none";
+                    modal.setAttribute("aria-hidden", "true");
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
