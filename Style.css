@@ -1,472 +1,339 @@
-/* ============================================================
-   Style.css — Mboga & Mbuto Entreprise
-   Full site stylesheet: layout, components, dark mode, modal,
-   responsive grid, accessibility.
-   ============================================================ */
+/* Style.css for Mboga & Mbuto Entreprise
+   - Responsive product grid
+   - Dark mode toggle (uses .dark on body)
+   - Modal for payment
+   - Accessible focus outlines and smooth transitions
+*/
 
-/* -------------------------
-   Theme variables
-   ------------------------- */
+/* Variables */
 :root{
-  --green-700: #2e7d32;
-  --green-600: #388e3c;
-  --green-500: #4caf50;
-  --green-400: #66bb6a;
-  --accent-blue: #1976d2;
-  --card-bg: #f8faf8;
-  --muted: #6b7a6b;
-  --text: #2d3a2e;
-  --on-dark: #eaeaea;
-  --page-max-width: 1200px;
-  --radius: 10px;
-  --shadow-1: 0 2px 8px rgba(0,0,0,0.08);
-  --shadow-2: 0 8px 30px rgba(0,0,0,0.12);
-  --transition-fast: 150ms ease;
-  --transition-mid: 220ms ease;
-  --base-font: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --bg-image: url("veg-2.jpg"); /* rename your image to veg-2.jpg or change this path */
+  --bg: #f3f6f4;
+  --card-bg: #ffffff;
+  --accent: #3f9146; /* green */
+  --accent-dark: #2f6f35;
+  --muted: #6b7a6a;
+  --text: #213126;
+  --glass: rgba(255,255,255,0.6);
+  --shadow: 0 6px 18px rgba(16, 40, 20, 0.08);
+  --radius: 12px;
+  --transition: 200ms ease;
 }
 
-/* -------------------------
-   Global / Reset
-   ------------------------- */
-*,
-*::before,
-*::after { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; font-size: 16px; }
-
+/* Reset / base */
+*{box-sizing:border-box}
+html,body{height:100%}
 body{
-  margin: 0;
-  font-family: var(--base-font);
-  color: var(--text);
-  line-height: 1.5;
-  background: var(--bg-image) no-repeat center/cover fixed;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
+  margin:0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  transition: background var(--transition), color var(--transition);
+  padding-bottom:48px; /* space for footer */
 }
 
-/* Improve focus visibility */
-:focus {
-  outline: 3px solid rgba(94, 165, 70, 0.28);
-  outline-offset: 2px;
+/* Header */
+header{
+  background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+  color:#fff;
+  padding:16px 20px;
+  position:sticky;
+  top:0;
+  z-index:40;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.logo-title{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+}
+.site-logo{
+  width:64px;
+  height:64px;
+  border-radius:10px;
+  object-fit:cover;
+  background: rgba(255,255,255,0.95);
+  padding:6px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.12);
+  border:2px solid rgba(255,255,255,0.08);
+}
+header h1{
+  margin:0;
+  font-size:1.15rem;
+  letter-spacing:0.6px;
+  font-weight:700;
+  text-align:center;
 }
 
-/* -------------------------
-   Header
-   ------------------------- */
-header {
-  background: linear-gradient(180deg, rgba(14, 200, 233, 0.06), rgba(255,255,255,0));
-  padding: 14px 18px;
-  position: sticky;
-  top: 0;
-  z-index: 1200;
-  backdrop-filter: blur(4px);
-  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
-}
-
-/* container inside header */
-.logo-title {
-  max-width: var(--page-max-width);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 6px 8px;
-}
-
-/* brand block (logo + title) */
-.logo-block {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.site-logo {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: #fff;
-  padding: 6px;
-  object-fit: contain;
-  display: block;
-  box-shadow: var(--shadow-1);
-}
-
-/* Title styling */
-header h1 {
-  margin: 0;
-  font-size: 1.25rem;
-  letter-spacing: 0.3px;
-  font-weight: 700;
-}
-
-/* nav */
-nav {
-  width: 100%;
-  margin-top: 8px;
-}
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 18px;
-  justify-content: center;
-  padding: 0;
-  margin: 6px 0 0;
-}
-nav a {
-  color: var(--green-500);
-  text-decoration: none;
-  font-weight: 600;
-  padding: 6px 8px;
-  border-radius: 8px;
-  transition: background var(--transition-fast), color var(--transition-fast);
-}
-nav a:hover,
-nav a:focus {
-  background: rgba(76, 175, 80, 0.08);
-  color: var(--green-700);
-}
-
-/* -------------------------
-   Utility controls
-   ------------------------- */
-/* Dark mode toggle (top-right) */
-.dark-toggle {
-  position: fixed;
-  top: 0.9rem;
-  right: 1rem;
-  z-index: 1300;
-  border: none;
-  background: var(--green-500);
-  color: #fff;
-  padding: 8px 10px;
-  border-radius: 20px;
-  cursor: pointer;
-  box-shadow: var(--shadow-1);
-  transition: transform var(--transition-fast), background var(--transition-fast);
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-/* Back-to-top button (fixed bottom-right; moves up if footer is visible) */
-.back-to-top {
-  position: fixed;
-  right: 24px;               /* distance from right edge */
-  bottom: -350%;              /* default distance from bottom edge */
-  width: 48px;
-  height: 48px;
-  display: none;             /* will be toggled by JS */
-  align-items: center;
-  justify-content: center;
-  background: var(--green-700);
+/* Header controls (dark mode, top) */
+.dark-toggle, .back-to-top{
+  background: rgba(255,255,255,0.12);
   color: #fff;
   border: none;
-  border-radius: 50%;
-  font-size: 1.15rem;
-  cursor: pointer;
-  z-index: 1400;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-  transition: transform 160ms ease, bottom 200ms ease, opacity 160ms ease;
-  opacity: 0.98;
+  padding:8px 10px;
+  border-radius:8px;
+  cursor:pointer;
+  margin-left:6px;
+  transition: transform var(--transition), background var(--transition);
+  font-size:0.95rem;
+}
+.dark-toggle:hover, .back-to-top:hover{ transform:translateY(-2px) }
+.back-to-top{
+  display:none; /* shown by script when scrolled */
 }
 
-/* small hover / focus states */
-.back-to-top:hover,
-.back-to-top:focus {
-  transform: translateY(-4px);
-  outline: none;
-  box-shadow: 0 10px 26px rgba(0,0,0,0.28);
+/* Navigation */
+nav{
+  margin-top:12px;
+  text-align:center;
+}
+nav ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:flex;
+  justify-content:center;
+  gap:22px;
+  flex-wrap:wrap;
+}
+nav a{
+  color:rgba(255,255,255,0.95);
+  text-decoration:none;
+  padding:6px 8px;
+  font-weight:600;
+}
+nav a:focus, nav a:hover{
+  text-decoration:underline;
+  outline:none;
 }
 
-/* slightly smaller on very small screens */
-@media (max-width: 420px) {
-  .back-to-top {
-    right: 14px;
-    bottom: 16px;
-    width: 42px;
-    height: 42px;
-    font-size: 1rem;
-  }
-}
-
-/* icon-only buttons accessibility */
-.dark-toggle[aria-pressed="true"]{ background: var(--green-600); }
-
-/* -------------------------
-   Main / layout containers
-   ------------------------- */
-main{
-  max-width: var(--page-max-width);
-  margin: 22px auto;
-  padding: 0 16px;
-}
-
-/* Hero */
+/* Main hero */
 .hero{
-  background: rgba(255,255,255,0.9);
-  padding: 28px;
-  border-radius: calc(var(--radius) + 2px);
-  box-shadow: var(--shadow-1);
-  text-align: center;
-  margin-bottom: 20px;
+  background: linear-gradient(180deg, rgba(239,250,236,0.8), rgba(240,248,244,0.6));
+  text-align:center;
+  padding:48px 20px;
 }
 .hero h2{
-  margin: 0 0 6px;
-  font-size: 1.6rem;
-  color: var(--green-700);
+  margin:0 0 8px 0;
+  font-size:1.9rem;
+  color:var(--accent-dark);
 }
-.hero p{ margin: 0; color: var(--muted); }
+.hero p{ margin:0; color:var(--muted); font-size:1rem }
 
-/* -------------------------
-   Products / gallery
-   ------------------------- */
-#products h2{ text-align: center; margin: 12px 0 20px; color: var(--green-700); }
+/* Section titles */
+main h2{
+  text-align:center;
+  color:var(--accent-dark);
+  margin:28px 0 8px;
+  font-size:1.35rem;
+}
 
+/* Category card */
 .category{
-  background: rgba(255,255,255,0.96);
-  margin: 18px auto;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-1);
-  padding: 16px;
-}
-.category h3{
-  margin: 0 0 10px;
-  color: var(--green-600);
+  max-width:1200px;
+  margin:18px auto;
+  padding:16px;
+  background:var(--card-bg);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
 }
 
-/* product gallery: responsive grid using flex wrap */
+/* Product gallery - responsive grid */
 .product-gallery{
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  align-items: stretch;
-  justify-content: flex-start;
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap:18px;
+  padding:12px;
+  align-items:start;
 }
 
-/* product card */
+/* Product card */
 .product-card{
-  background: var(--card-bg);
-  border-radius: 10px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
-  padding: 12px;
-  width: 160px;
-  flex: 0 1 160px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  background: #f9fdf9;
+  border-radius:12px;
+  padding:10px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  transition: transform var(--transition), box-shadow var(--transition);
+  border:1px solid rgba(50,80,50,0.06);
 }
-.product-card:hover,
-.product-card:focus-within{
+.product-card:hover{
   transform: translateY(-6px);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.12);
+  box-shadow: 0 10px 26px rgba(36,72,40,0.12);
 }
+
+/* Product image */
 .product-card img{
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  display: block;
+  width:120px;
+  height:120px;
+  object-fit:cover;
+  border-radius:8px;
+  display:block;
+  border:1px solid rgba(0,0,0,0.04);
 }
+
+/* Product name */
 .product-card span{
-  font-size: 1rem;
-  color: #274329;
-  margin-bottom: 8px;
-  text-align: center;
-  font-weight: 600;
+  display:block;
+  font-weight:600;
+  color:#2d4f36;
+  font-size:0.98rem;
 }
 
-/* Buy button (kept here so overall CSS is complete) */
-.buy-btn {
-    margin-top: 6px;
-    padding: 8px 12px;
-    background: var(--green-500);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.95rem;
-    transition: background var(--transition-fast), transform var(--transition-fast);
+/* Buy button */
+.buy-btn{
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  padding:8px 12px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:700;
+  font-size:0.95rem;
+  box-shadow:0 6px 12px rgba(63,145,70,0.12);
+  transition: transform var(--transition), opacity var(--transition);
 }
-.buy-btn:hover, .buy-btn:focus {
-    background: var(--green-600);
-    transform: translateY(-3px);
+.buy-btn:hover{ transform: translateY(-3px) }
+.buy-btn:active{ transform: translateY(0) }
+.buy-btn:focus{ outline:3px solid rgba(63,145,70,0.18); outline-offset:2px }
+
+/* About and Contact sections */
+.about-section, .contact-section{
+  max-width:900px;
+  margin:18px auto;
+  padding:20px;
+  background:linear-gradient(180deg, #ffffff, #fbfefb);
+  border-radius:10px;
+  color:var(--muted);
 }
 
-/* -------------------------
-   About & Contact Sections
-   ------------------------- */
-.about-section,
-.contact-section{
-  background: rgba(255,255,255,0.95);
-  padding: 20px;
-  border-radius: var(--radius);
-  margin: 18px 0;
-  box-shadow: var(--shadow-1);
-  text-align: center;
+/* Modal (payment) */
+.modal{
+  display:none; /* script toggles to "flex" */
+  position:fixed;
+  inset:0;
+  background: rgba(10, 20, 12, 0.45);
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  z-index:60;
 }
-.about-section p,
-.contact-section p{ color: var(--muted); margin: 8px 0 0; }
-
-/* -------------------------
-   Modal (payment) styles
-   ------------------------- */
-.modal {
-  display: none; /* shown by JS */
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-  padding: 20px;
-}
-.modal[aria-hidden="false"]{ display: flex; }
-
-.modal .modal-content{
+.modal[aria-hidden="false"]{ display:flex } /* fallback if script sets aria-hidden */
+.modal-content{
+  width:100%;
+  max-width:560px;
   background: #fff;
-  max-width: 460px;
-  width: 100%;
-  border-radius: 12px;
-  padding: 18px;
-  box-shadow: var(--shadow-2);
-  position: relative;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 18px 50px rgba(10,30,10,0.25);
+  position:relative;
+  text-align:left;
 }
 .modal .close{
-  position: absolute;
-  right: 12px;
-  top: 8px;
-  font-size: 22px;
-  cursor: pointer;
-  color: #333;
+  position:absolute;
+  right:12px;
+  top:10px;
+  font-size:22px;
+  cursor:pointer;
+  color:#666;
+  background:transparent;
+  border:none;
 }
-#productTitle{ margin: 4px 0 6px; color: var(--green-700); }
-#productInfo{ margin: 0 0 12px; color: var(--muted); }
-
-/* payment options buttons inside modal */
-.payment-options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin: 20px 0;
+.payment-options{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:12px;
 }
-
-.payment-btn {
-    flex: 1 1 200px;
-    padding: 12px;
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-    color: white;
-    background-color: #0070ba; /* default blue */
-    transition: background-color 0.3s ease;
+.payment-btn{
+  background:var(--accent-dark);
+  color:#fff;
+  padding:10px 12px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:700;
 }
+.payment-btn:hover{ opacity:0.95; transform:translateY(-2px) }
 
-.payment-btn:nth-child(1) { background-color: #0070ba; } /* PayPal */
-.payment-btn:nth-child(2) { background-color: #06bbdb; } /* Mobile Money */
-.payment-btn:nth-child(3) { background-color: #25D366; } /* WhatsApp */
+/* Modal note */
+.modal-note{ color:var(--muted); font-size:0.95rem; margin-top:12px }
 
-.payment-btn:hover {
-    opacity: 0.9;
-}
-
-/* note in modal */
-.modal-note{
-  margin-top: 12px;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-/* -------------------------
-   Footer
-   ------------------------- */
+/* Footer */
 footer{
-  background: linear-gradient(180deg, var(--green-500), var(--green-600));
-  color: white;
-  text-align: center;
-  padding: 14px 8px;
-  margin-top: 28px;
+  position:relative;
+  background:var(--accent-dark);
+  color:#fff;
+  padding:18px 12px;
+  text-align:center;
+  margin-top:28px;
 }
-footer p{ margin: 0; font-size: 0.95rem; }
-.social-icons{ margin-top: 10px; }
-.social-icons a img{
-  width: 28px;
-  vertical-align: middle;
-  margin: 0 6px;
-  transition: transform var(--transition-fast);
+footer p{ margin:0 0 8px 0 }
+.social-icons{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin-top:10px;
 }
-.social-icons a img:hover{ transform: scale(1.15); }
+.social-icons img{
+  width:28px;
+  height:28px;
+  filter:brightness(1.2) saturate(0.9) contrast(0.95);
+}
 
-/* -------------------------
-   Dark mode overrides
-   ------------------------- */
+/* Back to top button fixed on screen */
+.back-to-top{
+  position:fixed;
+  right:16px;
+  bottom:86px;
+  display:none;
+  z-index:70;
+  box-shadow:0 8px 20px rgba(0,0,0,0.18);
+}
+
+/* Small screens tweaks */
+@media (max-width:900px){
+  header h1{ font-size:1rem }
+  .site-logo{ width:56px; height:56px }
+  .product-card img{ width:110px; height:110px }
+}
+@media (max-width:600px){
+  .logo-title{ gap:8px }
+  nav ul{ gap:12px }
+  .product-gallery{ grid-template-columns: repeat(2, 1fr) }
+  .modal-content{ padding:16px }
+  .back-to-top{ bottom:76px }
+}
+
+/* Dark mode */
 body.dark{
-  background: #0b0b0b;
-  color: var(--on-dark);
+  --bg: #0b0f0c;
+  --card-bg: #0f1410;
+  --accent: #6ec36a;
+  --accent-dark: #4ea34c;
+  --muted: #b7ccb3;
+  --text: #e7f6ea;
+  background:linear-gradient(180deg,#071008 0%, #0b1410 100%);
+  color:var(--text);
 }
-body.dark .hero,
-body.dark .category,
-body.dark .about-section,
-body.dark .contact-section{
-  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-  color: var(--on-dark);
-}
-body.dark header{ background: rgba(0,0,0,0.35); }
-body.dark footer{ background: linear-gradient(180deg, #135723, #0e4720); }
-body.dark .product-card{ background: #121212; color: var(--on-dark); box-shadow: 0 2px 10px rgba(0,0,0,0.6); }
-body.dark .product-card span{ color: #dfeadb; }
-body.dark .buy-btn{ background: var(--green-400); color: #062006; }
-
-/* -------------------------
-   Responsive breakpoints (mobile-first)
-   ------------------------- */
-
-/* Small devices: stack nav vertically and make product cards adapt */
-@media (max-width: 900px) {
-  nav ul { gap: 14px; flex-wrap: wrap; justify-content: center; }
-  .logo-title { flex-direction: column; align-items: center; gap: 12px; }
-  .product-card { flex: 1 1 140px; width: 46%; max-width: 46%; }
-  .hero { padding: 24px; }
+body.dark header{ background: linear-gradient(90deg, var(--accent-dark), #2b6b3a) }
+body.dark .category, body.dark .modal-content, body.dark .about-section, body.dark .contact-section{
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.03);
 }
 
-/* Phones */
-@media (max-width: 600px) {
-  html { font-size: 15px; }
-  .product-card { width: 100%; flex-basis: 100%; }
-  .product-gallery { justify-content: center; }
-  .logo-title { padding: 8px; }
-  .site-logo { width: 56px; height: 56px; }
-  nav ul { gap: 10px; font-size: 0.95rem; }
-  .dark-toggle { top: .6rem; right: .7rem; padding: 6px 8px; font-size: .85rem; }
-  .back-to-top { right: .7rem; bottom: 1rem; width: 40px; height: 40px; }
+/* Accessibility: focus ring for interactive elements */
+a:focus, button:focus, .payment-btn:focus{
+  outline: 3px solid rgba(63,145,70,0.18);
+  outline-offset:2px;
 }
 
-/* Very small */
-@media (max-width: 380px){
-  html { font-size: 14px; }
-  .product-card img{ width: 100px; height: 100px; }
-  .site-logo{ width: 48px; height: 48px; }
-}
-
-/* -------------------------
-   Utility helpers
-   ------------------------- */
-.container {
-  max-width: var(--page-max-width);
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
-.text-center { text-align: center; }
-
-/* small print / muted */
-.muted { color: var(--muted); font-size: .95rem; }
-
-/* -------------------------
-   End of stylesheet
-   ------------------------- */
+/* Tiny helpers */
+.center{ text-align:center }
+.hidden{ display:none !important }
