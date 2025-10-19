@@ -3,6 +3,7 @@
    - Dark mode toggle (uses .dark on body)
    - Modal for payment
    - Accessible focus outlines and smooth transitions
+   - Minor cleanups (removed duplicated blocks, small accessibility tweaks)
 */
 
 /* Variables */
@@ -236,16 +237,22 @@ main h2{
   position:relative;
   text-align:left;
 }
+/* close button tweaks: larger hit area for accessibility */
 .modal .close{
   position:absolute;
-  right:12px;
-  top:10px;
-  font-size:22px;
+  right:8px;
+  top:8px;
+  font-size:24px;
   cursor:pointer;
   color:#666;
   background:transparent;
   border:none;
+  padding:6px;
+  line-height:1;
+  border-radius:6px;
 }
+.modal .close:focus { outline: 3px solid rgba(63,145,70,0.16); outline-offset:2px; }
+
 .payment-options{
   display:flex;
   gap:12px;
